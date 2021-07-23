@@ -1,14 +1,17 @@
 import {React} from "react"
 import { BrowserRouter as Router, Route, Switch,Link } from "react-router-dom";
-import { BsCalendar } from 'react-icons/bs';
 import { setAuthToken } from "../config/api";
-
 import {Dropdown} from "react-bootstrap"
 import { useContext,useState } from "react"
 import {UserContext} from "../contexts/userContext";
 import userData from "../data/User";
+import { ImExit } from "react-icons/im";
+import { BiReceipt } from "react-icons/bi";
+
 import { Card,Jumbotron,Row,Col,Button,DropdownButton,Image } from "react-bootstrap";
-import { BsPeopleCircle,BsEnvelope,BsLock,BsFillHouseFill,BsGeoAlt } from 'react-icons/bs';
+import { BsPeopleCircle,BsCalendar } from 'react-icons/bs';
+import { TiHomeOutline } from 'react-icons/ti';
+
 import { FaTransgender,FaPhone } from 'react-icons/fa';
 import ModalChangePassword from './ModalChangePassword'
 // import userData from '../data/User'
@@ -63,25 +66,43 @@ const logouts = () => {
   <Dropdown.Menu>
 
     <Dropdown.Item >
-    <Link to="/profile" className="btn btn-light">profile</Link>
+    <Row>
+        <Col sm="2"> <BsPeopleCircle style={{color:"blue"}} /> </Col>
+        <Col sm="2">
+        <Link to="/profile" className="btn btn-light">profile</Link>
+        </Col>
+        </Row>
+
         </Dropdown.Item>
+
         <Dropdown.Item >
         <Row>
-        <Col sm="2"> <BsCalendar /> </Col>
+        <Col sm="2"> <TiHomeOutline style={{color:"blue"}} /> </Col>
         <Col sm="2">
     <Link to="/AddProperty" className="btn btn-light">AddProperty</Link>
           
         </Col>
       </Row>
         </Dropdown.Item>
+        
         <Dropdown.Item >
+        <Row>
+        <Col sm="2"> <BiReceipt style={{color:"blue"}} /> </Col>
+        <Col sm="2">
     <Link to="/History" className="btn btn-light">History</Link>
+        </Col>
+      </Row>
         </Dropdown.Item>
        
     <Dropdown.Divider />
     <Dropdown.Item >
-        
-    <Link to="/" onClick={handleSignout} className="btn btn-light">Logout</Link>
+    <Row>
+        <Col sm="2"> <ImExit style={{color:"blue"}} /> </Col>
+        <Col sm="2">
+    <Link to="/" onClick={handleSignout} style={{backgroundColor:"transparent"}} className="btn btn-light">Logout</Link>
+          
+        </Col>
+      </Row>
         </Dropdown.Item>
   </Dropdown.Menu>
 </Dropdown>

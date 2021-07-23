@@ -3,6 +3,8 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Container } from "react-bootstrap";
 import { UserContextProvider,UserContext } from "./contexts/userContext";
 import { FilterContextProvider } from "./contexts/filterContext";
+import { AmenitiesContextProvider } from "./contexts/AmenitiesContext";
+
 import PrivateRoute from "./components/route/PrivateRoute";
 import DetailHouse from "./pages/DetailHouse";
 import Home from "./pages/Home";
@@ -34,6 +36,7 @@ const App = () => {
     <QueryClientProvider client={client}>
        <UserContextProvider>
         <FilterContextProvider>
+        {/* <AmenitiesContextProvider> */}
        
           <Router>
             <Header />
@@ -56,6 +59,7 @@ const App = () => {
               </Switch>
             </Container>
           </Router>
+          {/* </AmenitiesContextProvider> */}
         
         </FilterContextProvider>
       </UserContextProvider>

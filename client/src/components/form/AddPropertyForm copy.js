@@ -93,7 +93,7 @@ useEffect(() => {
         name:formData.name,
         price:formData.price,
         typeRent:formData.typeRent,
-        amenities:amens.toString(),
+        // amenities:amens.toString(),
         
 
       }),
@@ -152,7 +152,7 @@ console.log(DataAmenities)
   </Form.Group>
 
   
-  <h5 style={{paddingTop:"18px"}} >City</h5>
+  <h5>City</h5>
     <Row>
       <div>
 
@@ -168,15 +168,15 @@ console.log(DataAmenities)
 
     </Row>
   <Form.Group className="mb-3" controlId="address">
-    <Form.Label> <h5 style={{paddingTop:"28px"}}> Address</h5></Form.Label>
+    <Form.Label> <h5> Address</h5></Form.Label>
     <Form.Control as="textarea"  name="address" value={formData.address} onChange={handleChange} rows={3} />
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="price">
-    <Form.Label> <h5 style={{paddingTop:"28px"}}> Price </h5></Form.Label>
+    <Form.Label> <h5> Price </h5></Form.Label>
     <Form.Control type="text" name="price" value={formData.price} onChange={handleChange} />
   </Form.Group>
-  <h5 style={{paddingTop:"28px"}}>Type Rent</h5>
+  <h5>Type Rent</h5>
 
   <select  name="typeRent" onChange={handleChange} style={{width:"1110px"}}>
   <option value=""> - </option>
@@ -186,47 +186,53 @@ console.log(DataAmenities)
   </select>
   <br></br>
 
-  <h5 style={{paddingTop:"30px"}}>Amenities</h5>
+  <h5>Amenities</h5>
   <Row>
-            
-              <Col sm="1" >
-              <input 
-                type="checkbox"
-                id="Furnished"
-                value="Furnished"
-                onChange={handleCheckboxChange}
-              />
-              </Col>
-              <Col sm="1" > 
-                <p> Furnished</p> 
-              </Col>
-              <Col sm="1" > 
 
-              <input 
-                type="checkbox"
-                id="Pet Allowed"
-                value="Pet Allowed"
-                onChange={handleCheckboxChange}
-              />
-              </Col>
-              <Col sm="2" > 
-                <p> Pet Allowed</p> 
-              </Col>
-              <Col sm="1" >
-              <input 
-                type="checkbox"
-                id="Shared Accomodation"
-                value="Shared Accomodation"
-                onChange={handleCheckboxChange}
-              />
-              </Col>
-              <Col sm="2" > 
-                <p> Shared Accomodation</p> 
-              </Col>
-            </Row>
- 
+  {dataAmenities.map((item) => {
+         return (
+           <>
+<Col sm="1">
+
+          <p>
+            {item.name}
+          </p>
+</Col>
+<Col sm="1">
+
+    <input
+      onChange={(e) => {
+        // add to list
+        if (e.target.checked) {
+          setDataAmenities([
+            ...DataAmenities,
+            {
+              id: item.id,
+              name: item.name,
+          
+            },
+          ]);
+        } else {
+          // remove from list
+          setDataAmenities(
+            DataAmenities.filter((amenitiesData) => amenitiesData.id !== item.id),
+          );
+        }
+      }}
+      value={DataAmenities}
+      style={{ margin: '20px' }}
+      type="checkbox"
+    />
+           </Col>
+           </>
+
+)
+})
+}
+</Row>
    
-  <h5 style={{paddingTop:"28px"}}>Bedroom</h5>
+   
+  <h5>Bedroom</h5>
   <select name="bedroom" onChange={handleChange} style={{width:"1110px"}}>
   <option value=""> - </option>
   <option  value="1">1</option>
@@ -236,7 +242,7 @@ console.log(DataAmenities)
   <option value="5+">5+</option>
   </select>
   <br></br>
-  <h5 style={{paddingTop:"28px"}}>Bathroom</h5>
+  <h5>Bathroom</h5>
   <select name="bathroom" onChange={handleChange}  style={{width:"1110px"}}>
   <option value=""> - </option>
   <option  value="1">1</option>
@@ -246,19 +252,36 @@ console.log(DataAmenities)
   <option value="5+">5+</option>
   </select>
   <br></br>
-  
-  <Row>
-    <Col sm="4"></Col>
-    <Col sm="4">
-    <div style={{paddingTop:"80px"}}>
-      <Button style={{width:"300px",height:"50px"}} type="submit" onClick={handleSubmit}> Save</Button>
 
-      </div>
-    </Col>
-    <Col sm="4"></Col>
-  </Row>
-
-     
+<Row>
+              <Col sm="4" > 
+                <p> Furnished</p> 
+              </Col>
+              <Col sm="4" >   </Col>
+              <Col sm="4" >
+              <input 
+                type="checkbox"
+                id="Furnished"
+                value="Furnished"
+                onChange={handleCheckboxChange}
+              />
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="5" > 
+                <p> Pet Allowed</p> 
+              </Col>
+              <Col sm="3" >   </Col>
+              <Col sm="4" >
+              <input 
+                type="checkbox"
+                id="Pet Allowed"
+                value="Pet Allowed"
+                onChange={handleCheckboxChange}
+              />
+              </Col>
+            </Row>
+  <Button type="submit" onClick={handleSubmit}> Save</Button>
 </Form>
 
 

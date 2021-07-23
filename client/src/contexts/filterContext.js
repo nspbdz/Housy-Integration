@@ -7,7 +7,7 @@ const initialState = {
   data: {
     typeRent: '',
     price: '',
-    amenities: '',
+    amenities:[],
     bedroom: '',
     bathroom: '',
   }

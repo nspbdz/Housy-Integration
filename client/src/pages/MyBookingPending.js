@@ -49,6 +49,13 @@ console.log(item)
 // const item=data
 // console.log(item.attachment)
 
+const vl={
+  borderLeft: "3px solid blue",
+height: "75px",
+marginLeft:"5px"
+}
+const checkIns=item.checkin.split("T00:00:00.000Z")
+const checkOuts=item.checkout.split("T00:00:00.000Z")
 
   return(
     <div>
@@ -63,8 +70,8 @@ console.log(item)
 <ListGroup variant="flush">
   {/* <ListGroup.Item> */}
   <Row>
-  <Col sm={4}>
-  <img src={brand} alt="brand" />
+  <Col sm={4} >
+  <img style={{marginLeft:"30px",paddingTop:"20px"}} src={brand} alt="brand" />
 
   </Col>
   <Col sm={5}>
@@ -72,7 +79,7 @@ console.log(item)
   </Col>
   
   <Col sm={3}>
-    <h4>Booking</h4>
+    <h4 style={{paddingTop:"20px"}}>Booking</h4>
     <p>{Nowss} </p>
   </Col>
   </Row>
@@ -80,20 +87,27 @@ console.log(item)
  
   <Row>
   <Col sm>
-  {/* <h4>{item.house.name}</h4> */}
-{/* <p>{item.house.address}</p> */}
-  <Button  variant="secondary">{item.status}</Button>
+  <h4>{item.house.name}</h4>
+<p>{item.house.address}</p>
+  <Button style={{marginLeft:"30px",paddingTop:"20px"}}   variant="light"> <p style={{color:"#FF9900"}}>Waiting Approve</p> </Button>
   </Col>
   <Col sm>
   <Row>
-    <Col sm>status</Col>
     <Col sm>
-      <p>Check-In</p>
+    <>
+<input type="radio" /> <br></br>
+<div style={vl}></div>
+<input checked="active" type="radio" />
+</>
+    </Col>
+    
+    <Col sm>
+    <h5>Check-In</h5>
 
-    {/* <p>{item.checkin} </p> */}
-    <br></br>
-    <p>Check-Out</p>
-    {/* <p>{item.checkout} </p> */}
+      <p>{checkIns} </p>
+    {/* </br> */}
+    <h5>Check-Out</h5>
+    <p>{checkOuts} </p>
     
     </Col>
   
@@ -101,20 +115,21 @@ console.log(item)
   </Col>
   <Col sm>
       <h5>Amenities</h5>
-    {/* <p>{item.house.amenities} </p> */}
+    <p>{item.house.amenities} </p>
     <h5>Type Of Rent</h5>
-    {/* <p>{item.house.typeRent} </p> */}
+    <p>{item.house.typeRent} </p>
     </Col>
   <Col sm>
     
-    <img style={{width:"138px"}} src={item.attachment} />
+    <img style={{width:"138px",height:"138px"}} src={item.attachment} />
   <p>Upload Payment Proof</p>
  
         
   </Col>
 </Row>
+<ListGroup.Item>
   
-  <ListGroup>
+  {/* <ListGroup> */}
   <Row>
   <Col sm="4">
   <Row>
@@ -132,21 +147,23 @@ console.log(item)
 
   </Col>
 </Row>
-  </ListGroup>
-  {/* </ListGroup.Item> */}
-  {/* <ListGroup.Item> */}
-  
-  <Row>
+  {/* </ListGroup> */}
+  </ListGroup.Item>
+
+  <ListGroup.Item>
+  <Row  >
   <Col sm={4}>
+
   <Row>
   <Col sm={4}>1 </Col>
   <Col sm={4}>{dataUser.user.fullname} </Col>
   <Col sm={4}>{dataUser.user.gender} </Col>
-</Row>
+ </Row>
+
  </Col>
  <Col sm={4}>{dataUser.user.email} </Col>
   <Col sm={2}>
-  <p>Long Time Rent :</p>
+  <h5> Long Time Rent :</h5>
   </Col>
   <Col sm={2}>
     <p> {item.totaltime} </p>
@@ -156,17 +173,17 @@ console.log(item)
 
   </Col>
 </Row>
+</ListGroup.Item>
 
-  {/* <ListGroup.Item> */}
+  <ListGroup.Item>
     <Row>
   <Col sm={4}> </Col>
   <Col sm={4}> </Col>
-  <Col sm={2}>Total : </Col>
+  <Col sm={2}> <h5>Total :</h5> </Col>
   <Col sm={2}>Rp. {item.total} </Col>
 </Row>
+</ListGroup.Item>
 
-  {/* </ListGroup.Item> */}
-  {/* <ListGroup.Item> */}
     <Row>
   <Col sm={4}> </Col>
   <Col sm={4}> </Col>
@@ -176,8 +193,6 @@ console.log(item)
      </Col>
 </Row>
 
-  {/* </ListGroup.Item> */}
-  {/* </ListGroup.Item> */}
 </ListGroup>
 </Card>
   <Col sm={4}></Col>

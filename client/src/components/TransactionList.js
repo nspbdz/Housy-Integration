@@ -28,6 +28,7 @@ const TransactionList = ({ data, isLoading, error,isLoadingFilter, errors }) => 
 
   return (
     <>
+  <h3>Incoming Transaction</h3>
     <Row>
       <Table striped bordered hover >
   <thead>
@@ -50,7 +51,7 @@ const TransactionList = ({ data, isLoading, error,isLoadingFilter, errors }) => 
              
     <tr>
                 <td value={item.id}> {item.id}</td>
-                <td>udin</td>
+                <td>{item.user.fullname}</td>
                 {/* <td> {item.house.fullname}</td> */}
                 <td> {item.attachment}</td>
                 <td> {item.status}</td>

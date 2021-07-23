@@ -6,6 +6,8 @@ import brand from "../assets/images/brand.svg";
 import { UserContext } from "../contexts/userContext";
 
 function InvoiceItems({ item,id }) {
+  const Nowss =new Date().toLocaleTimeString("en-US", { month: "long",day: "2-digit" })
+  
   const router = useHistory();
   const [data, setData] = useState([])
   const contextValue = useContext(UserContext);
@@ -71,10 +73,19 @@ function InvoiceItems({ item,id }) {
       
       .catch((err) => console.log('error'))
   }
-  return (
-    <>
-      
-<Row className="justify-content-md-center" style={{width:"700px"}} >
+  
+const vl={
+  borderLeft: "3px solid blue",
+height: "75px",
+marginLeft:"5px"
+}
+const checkIns=item.checkin.split("T00:00:00.000Z")
+const checkOuts=item.checkout.split("T00:00:00.000Z")
+
+  return(
+    <div>
+      <>
+<Row className="justify-content-md-center" style={{width:"750px"}}>
 <Col xs lg="2">
   
 </Col>
@@ -82,10 +93,10 @@ function InvoiceItems({ item,id }) {
 <Row>
 <Card style={{ width: '1035px',height:"419px"  }}>
 <ListGroup variant="flush">
-  <ListGroup.Item>
+  {/* <ListGroup.Item> */}
   <Row>
-  <Col sm={4}>
-  <img src={brand} alt="brand" />
+  <Col sm={4} >
+  <img style={{marginLeft:"30px",paddingTop:"20px"}} src={brand} alt="brand" />
 
   </Col>
   <Col sm={5}>
@@ -93,101 +104,112 @@ function InvoiceItems({ item,id }) {
   </Col>
   
   <Col sm={3}>
-    <h4>Booking</h4>
-    {/* <p>{Nowss} </p> */}
+  
+    <h4 style={{paddingTop:"20px"}}>Booking</h4>
+    <p>{Nowss} </p>
   </Col>
   </Row>
 
-  
+ 
   <Row>
   <Col sm>
-  <h4>{item.house.name}</h4>
-<p>{item.house.address}</p>
-  <Button  variant="secondary"> {item.status}</Button>
+  <h4 style={{marginLeft:"30px",paddingTop:"20px"}} >{item.house.name}</h4>
+<p style={{marginLeft:"30px",paddingTop:"20px"}}>{item.house.address}</p>
   </Col>
   <Col sm>
   <Row>
-    <Col sm>status</Col>
     <Col sm>
-      <p>Check-In</p>
+    <>
+<input type="radio" /> <br></br>
+<div style={vl}></div>
+<input checked="active" type="radio" />
+</>
+    </Col>
+    
+    <Col sm>
+    <h6>Check-In</h6>
 
-    <p>{item.checkin} </p>
-    <br></br>
-    <p>Check-Out</p>
-    <p>{item.checkout} </p>
+      <p>{checkIns} </p>
+    {/* </br> */}
+    <h6>Check-Out</h6>
+    <p>{checkOuts} </p>
     
     </Col>
   
   </Row>
   </Col>
   <Col sm>
-      <h5>Amenities</h5>
+      <h6>Amenities</h6>
     <p>{item.house.amenities} </p>
-    <h5>Type Of Rent</h5>
+    <h6>Type Of Rent</h6>
     <p>{item.house.typeRent} </p>
     </Col>
   <Col sm>
     
-    <img style={{width:"138px"}} src="" />
-  <p>Upload Payment Proof</p>
-
+    <img style={{width:"138px",height:"138px",marginRight:"10px"}} src={item.attachment} />
+  <p style={{marginRight:"10px"}} >Upload Payment Proof</p>
+ 
         
   </Col>
 </Row>
+<ListGroup.Item>
   
-  <ListGroup>
+  {/* <ListGroup> */}
   <Row>
   <Col sm="4">
   <Row>
-  <Col sm="2">
+  <Col sm="3">
    
-  <p>No</p>
+  <h6>No</h6>
     
   </Col>
-  <Col sm="6"><p>Full Name</p></Col>
+  <Col sm="5"><h6>Full Name</h6></Col>
+  <Col sm="4"><h6>Gender</h6></Col>
 </Row>
   </Col>
-  <Col sm="2"><p>Gender</p></Col>
-  <Col sm="4"><p>Phone/Email</p></Col>
+  <Col sm="4"><h6>Phone/Email</h6></Col>
   <Col sm="4">
 
   </Col>
 </Row>
-  </ListGroup>
+  {/* </ListGroup> */}
   </ListGroup.Item>
+
   <ListGroup.Item>
-  
-  <Row>
+  <Row  >
   <Col sm={4}>
+
   <Row>
   <Col sm={4}>1 </Col>
   <Col sm={4}>{dataUser.user.fullname} </Col>
   <Col sm={4}>{dataUser.user.gender} </Col>
-</Row>
+ </Row>
+
  </Col>
  <Col sm={4}>{dataUser.user.email} </Col>
-  <Col sm={4}>
-  {/* <p>Long Time Rent :</p> */}
+  <Col sm={2}>
+  <h6> Long Time Rent :</h6>
   </Col>
   <Col sm={2}>
-  <p>Long Time Rent :</p>
-  </Col>
-  <Col sm={2}>
-  <p>{item.totaltime}</p>
+    <p> {item.totaltime} </p>
+  {/* <p>{compareYear +"Year "}
+    {compareMonth +" Month "}
+    {compareDay +" Day"} </p> */}
 
   </Col>
 </Row>
+</ListGroup.Item>
+<ListGroup.Item>
 
-  <ListGroup.Item>
     <Row>
   <Col sm={4}> </Col>
   <Col sm={4}> </Col>
-  <Col sm={2}>Total : </Col>
+  <Col sm={2}> <h6>Total :</h6> </Col>
   <Col sm={2}>Rp. {item.total} </Col>
 </Row>
+</ListGroup.Item>
 
-  </ListGroup.Item>
-  <ListGroup.Item>
+<ListGroup.Item>
     <Row>
   <Col sm={4}> </Col>
   <Col sm={2}> </Col>
@@ -209,7 +231,16 @@ function InvoiceItems({ item,id }) {
 </Row>
 
   </ListGroup.Item>
-  </ListGroup.Item>
+  
+    <Row>
+  <Col sm={4}> </Col>
+  <Col sm={4}> </Col>
+  <Col sm={4}>
+
+  
+     </Col>
+</Row>
+
 </ListGroup>
 </Card>
   <Col sm={4}></Col>
@@ -221,9 +252,9 @@ function InvoiceItems({ item,id }) {
   
 </Col>
 </Row>
+</>
    
-    </>
-
+  </div>
   )
   
 }

@@ -101,7 +101,13 @@ const handleClicks = (event) => {
   // MakeTransaction() 
 }
   
-  
+  const vl={
+    borderLeft: "3px solid blue",
+  height: "75px",
+  marginLeft:"5px"
+  }
+  const checkIns=item.checkin.split("T00:00:00.000Z")
+  const checkOuts=item.checkout.split("T00:00:00.000Z")
   return (
     <>
      <>
@@ -113,39 +119,44 @@ const handleClicks = (event) => {
 <Row>
 <Card style={{ width: '1035px',height:"419px"  }}>
 <ListGroup variant="flush">
-  <ListGroup.Item>
   <Row>
   <Col sm={4}>
-  <img src={brand} alt="brand" />
+  <img style={{marginLeft:"30px",paddingTop:"20px"}} src={brand} alt="brand" />
 
   </Col>
-  <Col sm={3}>
+  <Col sm={5}>
     
   </Col>
-  <Col sm={5}>
-    <h4>Booking</h4>
+  <Col sm={3}>
+    <h4 style={{paddingTop:"20px"}}>Booking</h4>
     <p>{Nowss} </p>
   </Col>
   </Row>
 
-  </ListGroup.Item>
   <ListGroup.Item>
   <Row>
   <Col sm>
   <h4>{item.house.name}</h4>
 <p>{item.house.address}</p>
-<Button  variant="secondary">Waiting Payment</Button>
+<Button style={{width:"150px", height:"24px",textAlign:"center"}}  variant="light">
+  <p style={{color:"#FF9900"}}>Waiting Payment</p>
+   </Button>
   </Col>
   <Col sm>
   <Row>
-    <Col sm>status</Col>
+    <Col sm >
+    <>
+    <input type="radio" /> <br></br>
+    <div style={vl}></div>
+    <input checked="active" type="radio" />
+    </>
+    </Col>
     <Col sm>
-      <p>Check-In</p>
-
-    <p>{item.checkin} </p>
-    <br></br>
-    <p>Check-Out</p>
-    <p>{item.checkout} </p>
+      <h5>Check-In</h5>
+    <p>{checkIns} </p>
+    {/* </br> */}
+    <h5>Check-Out</h5>
+    <p>{checkOuts} </p>
     
     </Col>
   
@@ -180,12 +191,12 @@ const handleClicks = (event) => {
   <Row>
   <Col sm="4">
   <Row>
-  <Col sm="4">
+  <Col sm="3">
    
   <h5>No</h5>
     
   </Col>
-  <Col sm="4"><h5>Full Name</h5></Col>
+  <Col sm="5"><h5>Full Name</h5></Col>
   <Col sm="4"><h5>Gender</h5></Col>
 </Row>
   </Col>
@@ -196,6 +207,7 @@ const handleClicks = (event) => {
 </Row>
   </ListGroup>
   </ListGroup.Item>
+
   <ListGroup.Item>
   
   <Row>
@@ -217,6 +229,8 @@ const handleClicks = (event) => {
 
   </Col>
 </Row>
+</ListGroup.Item>
+
 
   <ListGroup.Item>
     <Row>
@@ -227,14 +241,13 @@ const handleClicks = (event) => {
 </Row>
 
   </ListGroup.Item>
-  <ListGroup.Item>
-    <Row>
+    <Row style={{paddingTop:"20px"}}>
   <Col sm={4}> </Col>
   <Col sm={4}> </Col>
   <Col sm={4}>
 
   
-  <Button onClick={handleSubmit} variant="primary" style={{width:"150px"}}>
+  <Button style={{width:"213px",height:"50px"}} onClick={handleSubmit} variant="primary" >
 
     Pay
   </Button>
@@ -242,8 +255,6 @@ const handleClicks = (event) => {
      </Col>
 </Row>
 
-  </ListGroup.Item>
-  </ListGroup.Item>
 </ListGroup>
 </Card>
   <Col sm={4}></Col>

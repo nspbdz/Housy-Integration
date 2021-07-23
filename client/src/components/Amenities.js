@@ -1,101 +1,85 @@
-import React, { useState,useEffect } from "react";
-//  function Amenities() {
+import {useState,useEffect,useRef,useContext} from "react";
+import {Col,Row} from "react-bootstrap";
+import { AmenitiesContext} from "../contexts/AmenitiesContext";
+
 function Amenities({ amenities, setAmenities}) {
-
-  const data = [
-    {
-      id: "Furnished",
-    
-    },
-    {
-      id: "Pet Allowed",
-    //   name: "James",
-    //   lastName: "Doe",
-    //   age: "40"
-    },
-    {
-      id: "Shared Accomodation",
-    //   name: "Alexa",
-    //   lastName: "Doe",
-    //   age: "27"
-    },
-    
-  ];
-  const [values, setValues] = useState()
-
-  const [peopleInfo, setPeopleInfo] = useState([
-   {
-      id: "",
-     
-    }
-  ]);
-
-// const [peopleInfo, setPeopleInfo] = useState([{}]);
- 
-//   console.log(peopleInfo);
-//   console.log(peopleInfo? peopleInfo[1] : null);
+  const elemRef = useRef(null);
   
-  const handleDay  = (id) => {
-//    const x=e.target.name
-   console.log(id)
-console.log(peopleInfo)
-
-    setAmenities({
-      amenities:peopleInfo                                                                            
-    })
+  // const [state,AmenitiesDispatch] = useContext(AmenitiesContext)
+  const [amen,setAmen] = useState([])
+  const [amens,setAmens] = useState([])
+ const handleCheckboxChange = (event) => {
+// event.preventDefault()
+  
+    let newArray = [...amens, event.target.id];
+    if (amens.includes(event.target.id) )
+     {
+      newArray = newArray.filter(day => day !== event.target.id);
     }
-    console.log(peopleInfo)
+    setAmens(
+      newArray
+    );
+  };
 
-console.log(values)
-// console.log(peopleInfo)
+
+useEffect(() => {
+
+  return setAmenities(amens.toString())
+}, []);
+
 console.log(amenities)
-
-
-  return (
-    <div className="App">
-      <table>
-        <tr>
-          {data.map((item) => {
-            return (
-              <div
-                key={item.id}
-                style={{
-                  display: "flex",
-                  width: "150px"
-                }}
-              >
-                <input
-                    onClick={ () => handleDay(item.id) }
-                  onChange={(e) => {
-                    // add to list
-                    if (e.target.checked) {
-                      setPeopleInfo([
-                        ...peopleInfo,
-                        {
-                          id: item.id,
-                        },
-                      ]);
-                    } else {
-                      // remove from list
-                      setPeopleInfo(
-                        peopleInfo.filter((people) => people.id !== item.id),
-                      );
-                    }
-                  }}
-                  value={peopleInfo}
-                  name={data}
-                  style={{ margin: "20px" }}
-                  type="checkbox"
-                />
-                <td style={{ margin: "20px" }}>{item.name}</td>
-                <td style={{ margin: "20px" }}>{item.lastName}</td>
-                <td style={{ margin: "20px" }}>{item.age}</td>
-              </div>
-            );
-          })}
-        </tr>
-      </table>
-    </div>
-  );
+    return (
+      <div>
+        <form>
+          
+            <h5>Amenities</h5>
+            <Row>
+              <Col sm="4" > 
+                <p> Furnished</p> 
+              </Col>
+              <Col sm="4" >   </Col>
+              <Col sm="4" >
+              <input ref={elemRef}
+                type="checkbox"
+                id="Furnished"
+                value="Furnished"
+                onChange={handleCheckboxChange}
+              />
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="5" > 
+                <p> Pet Allowed</p> 
+              </Col>
+              <Col sm="3" >   </Col>
+              <Col sm="4" >
+              <input ref={elemRef}
+                type="checkbox"
+                id="Pet Allowed"
+                value="Pet Allowed"
+                onChange={handleCheckboxChange}
+              />
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="5" > 
+                <p> Shared Accomodation</p> 
+              </Col>
+              <Col sm="3" >   </Col>
+              <Col sm="4" >
+              <input ref={elemRef}
+                type="checkbox"
+                id="Shared Accomodation"
+                value="Shared Accomodation"
+                onChange={handleCheckboxChange}
+              />
+              </Col>
+            </Row>
+        </form>
+       
+      </div>
+    );
+  // }
 }
+
 export default Amenities;

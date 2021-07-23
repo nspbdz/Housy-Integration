@@ -1,5 +1,5 @@
 import { useState,useContext } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Col,Row } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
 import { useHistory,Router,Link } from "react-router-dom";
 import { UserContext } from "../../contexts/userContext";
@@ -142,20 +142,39 @@ console.log(token);
     MakeTransaction() 
   }
 
+  const dateStyle={
+    height: "50px",
+    width: "450px",
+    left: "33px",
+    top: "188px",
+    borderRadius: "5px",
+    marginBottom:"20px"
+
+  }
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Body>
-    <form onSubmit={handleSubmit}>
-
+    <form  onSubmit={handleSubmit}>
+      <h4 style={{textAlign:"center"}} >How Long You Will Stay</h4>
     <br></br>
+    <h5>Check -In</h5>
+    <input  style={dateStyle} type="date" name="checkin" value={formData.checkin} onChange={handleChange} />
+    <br></br>
+    <h5>Check -Out</h5>
   
-    <input type="date" name="checkin" value={formData.checkin} onChange={handleChange} />
+    <input style={dateStyle} type="date" name="checkout" value={formData.checkout} onChange={handleChange} />
     <br></br>
-  
-    <input type="date" name="checkout" value={formData.checkout} onChange={handleChange} />
-    <br></br>
-    
-    <button type="submit">click</button>
+    <Row>
+      <Col sm="3" ></Col>
+      <Col sm="4" >
+      <Button  style={{ width:"213px"}}   className="justic=fy" variant="primary" type="submit">
+                          Order
+       </Button> 
+      </Col>
+      <Col sm="4" ></Col>
+    </Row>
+   
+    {/* <button type="submit">click</button> */}
   </form>
   </Modal.Body>
     </Modal>

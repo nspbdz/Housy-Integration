@@ -28,7 +28,7 @@ const Home = () => {
   const bedroom= contextValue[0].data.bedroom
   const bathroom= contextValue[0].data.bathroom
   // console.log(typeRent)
-  // console.log(amenities)
+  console.log(amenities)
   // console.log(price)
   // console.log(bedroom)
   // console.log(bathroom)
@@ -80,24 +80,23 @@ const Home = () => {
     // console.log(dataTransaction)
 
     return (
-      
-       
           <>
       <Row >
       {state.isLogin==true && state.user.listasid==1 &&(
-<>
 <TransactionList data={dataTransaction} isLoading={isLoading} error={error} />
-</>
-
       )}
         {state.isLogin==true && state.user.listasid==2  &&(
 <>
         <Col  xs={4}  style={{marginRight:"50px"}}>
           <Sidebar />
           <Row>
-             <Button  onClick={getHouses => setPage(true)} className="justic=fy" variant="primary" type="submit">
+            <Col sm="4"></Col>
+            <Col sm="3"></Col>
+            <Col sm="5">
+             <Button style={{width:"140px"}}  onClick={getHouses => setPage(true)} className="justic=fy" variant="primary" type="submit">
                 Apply
             </Button>
+            </Col>
         </Row>
         </Col>
         <Col >

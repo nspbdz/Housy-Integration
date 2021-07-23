@@ -9,7 +9,7 @@ function AddProduct(props) {
  
   return (
     <div>
-    <Row>
+    <Row> 
     <Col>
     <HouseId />
     <Row>

@@ -150,7 +150,7 @@ exports.createHouse = async (req, res) => {
         price: HouseDataStored.price,
         price: HouseDataStored.price,
         typeRent: HouseDataStored.typeRent,
-        amenities: HouseDataStored.amenities.split(","),
+        amenities: HouseDataStored.amenities,
         bathroom: HouseDataStored.bathroom,
         bedroom: HouseDataStored.bedroom,
         

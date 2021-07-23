@@ -62,7 +62,7 @@ const handleSignout = (e) => {
     <Row>
         <Col sm="2"> <BsPeopleCircle style={{color:"blue"}} /> </Col>
         <Col sm="2">
-    <Link to="/profile" className="btn btn-light">profile</Link>
+    <Link to="/profile" style={{backgroundColor:"transparent"}} className="btn btn-light">profile</Link>
           
         </Col>
       </Row>
@@ -71,7 +71,7 @@ const handleSignout = (e) => {
         <Row>
         <Col sm="2"> <BsCalendar style={{color:"blue"}} /> </Col>
         <Col sm="2">
-    <Link to="/MyBooking" className="btn btn-light">MyBooking</Link>
+    <Link to="/MyBooking" style={{backgroundColor:"transparent"}} className="btn btn-light">MyBooking</Link>
           
         </Col>
       </Row>
@@ -81,13 +81,13 @@ const handleSignout = (e) => {
         <Row>
         <Col sm="2"> <BiReceipt style={{color:"blue"}} /> </Col>
         <Col sm="2">
-    <Link to="/MyBookingHistory" className="btn btn-light">MyBookingHistory</Link>
+    <Link to="/MyBookingHistory" style={{backgroundColor:"transparent"}} className="btn btn-light">MyBookingHistory</Link>
           
         </Col>
       </Row>
         </Dropdown.Item>
         {/* <Dropdown.Item >
-    <Link to="/MyBookingPending" className="btn btn-light">MyBookingPending</Link>
+    <Link to="/MyBookingPending" style={{backgroundColor:"transparent"}} className="btn btn-light">MyBookingPending</Link>
         </Dropdown.Item> */}
         
     <Dropdown.Divider />
@@ -95,7 +95,7 @@ const handleSignout = (e) => {
     <Row>
         <Col sm="2"> <ImExit style={{color:"blue"}} /> </Col>
         <Col sm="2">
-    <Link to="/" onClick={handleSignout} className="btn btn-light">Logout</Link>
+    <Link to="/" onClick={handleSignout} style={{backgroundColor:"transparent"}} className="btn btn-light">Logout</Link>
           
         </Col>
       </Row>

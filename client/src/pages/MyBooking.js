@@ -47,9 +47,10 @@ const MyBooking = () => {
     const response = await API.get(`/transaction?user_id=${userId}`);
     const dataResponse=response.data.data
     const DataStatus=dataResponse.filter(item => ( item.status === "Waiting")).sort((a, b) => (b.id - a.id))
+    
     console.log(DataStatus)
       
-    return DataStatus;
+    return DataStatus[0];
 
   });
   // if (isLoading) return <p>...loading</p>;

@@ -65,7 +65,7 @@ var token= localStorage.getItem("token")
       }),
     })
       .then((res) => res.json() )
-      .then((res) => {
+      .then((res) => { 
        const stat=res.status
        if(stat=="success"){
         console.log("success")
@@ -84,10 +84,13 @@ var token= localStorage.getItem("token")
         console.log()
         // <img src={not_found} width="100%" height="100%" alt="not found" />
       )}
-      <Modal style={{backgroundColor:"white"}} show={show} onHide={handleClose}>
-          <Modal.Body  style={{height:"40vw"}}>
+      <Modal style={{backgroundColor:"transparent"}} show={show} onHide={handleClose}>
+          {/* <Modal.Body  style={{height:"45vw",width:"70vw"}}> */}
+        
         <InvoiceItems id={id} item={item} />
-         </Modal.Body>
+      
+      
+         {/* </Modal.Body> */}
       </Modal>
     </>  
   );
