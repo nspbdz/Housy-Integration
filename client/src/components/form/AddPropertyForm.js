@@ -7,7 +7,7 @@ import { API } from "../../config/api";
 function AddPropertyForm(props) {
   const [DataAmenities, setDataAmenities] = useState([]);
   const { handleClose,handleOrder, show } = props;
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [dataCity, setDataCity] = useState();
   
   const router = useHistory();
@@ -121,25 +121,7 @@ useEffect(() => {
     event.preventDefault()
     MakeTransaction() 
   }
-  const dataAmenities = [
-    {
-      id: "1",
-      name: "Furnished",
-    },
-    {
-      id: "2",
-      name: "Pet Allowed",
-    },
-    {
-      id: "3",
-      name: "Shared Accomodation",
-    },
-   
-  ];
-
-console.log(dataAmenities[0].name)
-console.log(DataAmenities)
-
+ 
   return (
   <>
   
@@ -155,8 +137,7 @@ console.log(DataAmenities)
   <h5 style={{paddingTop:"18px"}} >City</h5>
     <Row>
       <div>
-
-      <select required name="city_id" onChange={handleChange} style={{marginLeft:"10px",width:"930px"}}>
+      <select required name="city_id" onChange={handleChange} style={{marginLeft:"10px",width:"1110px"}}>
       <option  value="undefined"></option>
      
       {dataCity?.length > 0 &&

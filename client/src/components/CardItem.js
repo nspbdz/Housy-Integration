@@ -42,7 +42,7 @@ function CardItem({ item }) {
                   <div class="card-img-overlay">
                   <Card.Title style={{backgroundColor:"white",width:"100px" }}>
                               <div className="room__amenity" >
-                                <p style={{fontSize:"14px",backgroundColor:"white",textAlign:"center"}}>{item.amenities.replace(/,/g, " ")}</p>
+                                {/* <p style={{fontSize:"14px",backgroundColor:"white",textAlign:"center"}}>{item.amenities.replace(/,/g, " ")}</p> */}
                               </div>
                             </Card.Title>
                     </div>

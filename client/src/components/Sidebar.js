@@ -50,7 +50,6 @@ let rentss=rent
   // console.log(bathroom)  
   console.log(amenities)  
   
-
   return (
     <>
     

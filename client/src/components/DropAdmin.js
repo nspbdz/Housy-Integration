@@ -63,13 +63,13 @@ const logouts = () => {
 
   </Dropdown.Toggle>
 
-  <Dropdown.Menu>
+  <Dropdown.Menu style={{width:"200px"}}>
 
-    <Dropdown.Item >
+    <Dropdown.Item  >
     <Row>
         <Col sm="2"> <BsPeopleCircle style={{color:"blue"}} /> </Col>
         <Col sm="2">
-        <Link to="/profile" className="btn btn-light">profile</Link>
+        <Link to="/profile" style={{backgroundColor:"transparent"}} className="btn btn-light">profile</Link>
         </Col>
         </Row>
 
@@ -79,7 +79,7 @@ const logouts = () => {
         <Row>
         <Col sm="2"> <TiHomeOutline style={{color:"blue"}} /> </Col>
         <Col sm="2">
-    <Link to="/AddProperty" className="btn btn-light">AddProperty</Link>
+    <Link to="/AddProperty" style={{backgroundColor:"transparent"}} className="btn btn-light">AddProperty</Link>
           
         </Col>
       </Row>
@@ -89,7 +89,7 @@ const logouts = () => {
         <Row>
         <Col sm="2"> <BiReceipt style={{color:"blue"}} /> </Col>
         <Col sm="2">
-    <Link to="/History" className="btn btn-light">History</Link>
+    <Link to="/History" style={{backgroundColor:"transparent"}} className="btn btn-light">History</Link>
         </Col>
       </Row>
         </Dropdown.Item>

@@ -24,9 +24,7 @@ function AddProperty(props) {
                         <Col sm="5"></Col>
                         <Col sm="2">
                         {/* <Button  size="lg" variant="primary" type="submit"> */}
-                        <Button variant="primary" size="lg">
-                          Save
-                      </Button>
+                      
                         </Col>
                        
                         <Col sm="5">

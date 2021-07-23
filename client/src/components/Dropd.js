@@ -56,7 +56,7 @@ const handleSignout = (e) => {
 
   </Dropdown.Toggle>
 
-  <Dropdown.Menu>
+  <Dropdown.Menu style={{width:"200px"}}>
 
     <Dropdown.Item >
     <Row>

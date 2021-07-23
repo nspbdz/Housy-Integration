@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import brand from "../assets/images/brand.svg";
 import { UserContext } from "../contexts/userContext";
 
-function HistoryItem({ item }) {
+function AdminHistoryItem({ item }) {
   const Nowss =new Date().toLocaleTimeString("en-US", { month: "long",day: "2-digit" })
 
   const router = useHistory();
@@ -143,7 +143,7 @@ const checkOuts=item.checkout.split("T00:00:00.000Z")
   <Col sm>
   <h4>{item.house.name}</h4>
 <p>{item.house.address}</p>
-  <Button style={{marginLeft:"30px",paddingTop:"20px"}}   variant="light"> <p style={{color:"#FF9900"}}>{item.status}</p> </Button>
+  <Button style={{marginLeft:"30px",paddingTop:"20px"}}   variant="light"> <p style={{color:"#FF9900"}}>Waiting Approve</p> </Button>
   </Col>
   <Col sm>
   <Row>
@@ -269,4 +269,4 @@ const checkOuts=item.checkout.split("T00:00:00.000Z")
   
 }
 
-export default HistoryItem;
+export default AdminHistoryItem;

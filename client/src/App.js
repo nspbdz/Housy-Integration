@@ -14,7 +14,7 @@ import MyBooking from "./pages/MyBooking";
 import Profile from "./pages/Profile";
 import MyBookingPending from "./pages/MyBookingPending";
 import MyBookingHistory from "./pages/MyBookingHistory";
-import History from "./pages/History";
+import History from "./pages/AdminHistory";
 import AddProperty from "./pages/AddProperty";
 
 // MyBooking

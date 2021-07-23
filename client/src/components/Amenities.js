@@ -8,25 +8,41 @@ function Amenities({ amenities, setAmenities}) {
   // const [state,AmenitiesDispatch] = useContext(AmenitiesContext)
   const [amen,setAmen] = useState([])
   const [amens,setAmens] = useState([])
- const handleCheckboxChange = (event) => {
-// event.preventDefault()
-  
-    let newArray = [...amens, event.target.id];
-    if (amens.includes(event.target.id) )
+  var result=""
+
+ const handleCheckboxChange = async (e)  => {
+    let newArray =   [...amens, e.target.id];
+    if (amens.includes(e.target.id) )
      {
-      newArray = newArray.filter(day => day !== event.target.id);
+      newArray = newArray.filter(day => day !== e.target.id);
     }
-    setAmens(
-      newArray
-    );
+     setAmens( newArray );
+     setAmenities(amens.toString())
+
+    // function sets(){
+    //   setAmenities(amens.toString())
+    //    await arr()
+    // }
+// console.log(handl)
+    //  return (amensData)
+    //  return  setAmenities(amensData)
+  //  setAmenities(amensData)
+
   };
 
+  const checkUser =  () => {
+    // const datAme=amens.toString()
+    //   setAmenities(datAme)
+      setAmenities(amens.toString())
+      
+  }
+  useEffect(() => {
+    checkUser();
+  }, []);
 
-useEffect(() => {
+console.log(result)
 
-  return setAmenities(amens.toString())
-}, []);
-
+console.log(amens)
 console.log(amenities)
     return (
       <div>

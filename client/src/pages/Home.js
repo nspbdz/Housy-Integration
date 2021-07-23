@@ -78,6 +78,8 @@ const Home = () => {
     // console.log(dataApi)
     const [page, setPage] = useState(false)
     // console.log(dataTransaction)
+    console.log(data)
+    console.log(dataApi)
 
     return (
           <>
