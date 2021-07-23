@@ -1,5 +1,7 @@
 const { House, City } = require("../../models");
 const { Op } = require("sequelize");
+const joi = require('joi')
+
 exports.getHouses = async (req, res) => {
   try {
     const path = process.env.PATH_FILE
@@ -119,13 +121,28 @@ exports.getHouse = async (req, res) => {
 
 //create house
 exports.createHouse = async (req, res) => {
+  const path = process.env.PATH_FILE
+
   try {
+    let data = req.body
+    const image = req.files.imageFile[0].filename 
+    const image1 = req.files.imageFile[1].filename 
+    const image2 = req.files.imageFile[2].filename 
+    const image3 = req.files.imageFile[3].filename 
+    data = {
+      ...data,
+      image,image1, image2,image3
+  }
+
     const houses = await House.create({
-      ...req.body,
+      ...req.body,image,image1, image2,image3
+      
+
     });
+
     const HouseDataStored = await House.findOne({
       where: {
-        name: req.body.name
+        address: req.body.address
       },
       include:{
         model:City,
@@ -145,7 +162,7 @@ exports.createHouse = async (req, res) => {
       message: "resource has successfully created",
       // data:HouseDataStored
       data: {
-        // id: HouseDataStored.id,
+        id: HouseDataStored.id,
         address: HouseDataStored.address,
         price: HouseDataStored.price,
         price: HouseDataStored.price,
@@ -153,6 +170,10 @@ exports.createHouse = async (req, res) => {
         amenities: HouseDataStored.amenities,
         bathroom: HouseDataStored.bathroom,
         bedroom: HouseDataStored.bedroom,
+        image: HouseDataStored.image,
+        image1: HouseDataStored.image1,
+        image2: HouseDataStored.image2,
+        image3: HouseDataStored.image3,
         
         city:{
           id:HouseDataStored.city.id,

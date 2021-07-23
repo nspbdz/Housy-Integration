@@ -33,7 +33,7 @@ router.get("/check-auth", auth, checkAuth);
 router.get("/house", housesFilter)
 router.get("/houses", getHouses)
 router.get("/house/:id", getHouse)
-router.post("/house", createHouse, uploadFile("imageFile"))
+router.post("/house", uploadFile("imageFile"), createHouse, )
 router.delete("/house/:id", deleteHouse)
 
 // router.put("/house/:id", updateHouse, uploadFile("imageFile"))

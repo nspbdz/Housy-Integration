@@ -28,7 +28,6 @@ function AddPropertyForm(props) {
 
   const [data, setData] = useState([])
   const [formData, setFormData] = useState({});
-  const [dataUpdate, setDataUpdate] = useState([])
 
   const [amens,setAmens] = useState([])
   const handleCheckboxChange = (event) => {
@@ -45,15 +44,14 @@ function AddPropertyForm(props) {
    };
  console.log(amens.toString())
  
-  const handleChange = (e) => {
-    const a=e.target.value
+  const handleChange = (event) => {
+    const a=event.target.value
     console.log(formData)
     // setFormData(event.target.value)
-    setDataUpdate({
-      ...dataUpdate,
-      [e.target.name]:
-        e.target.type === "file" ? e.target.files[0] : e.target.value,
-      });
+    setFormData({
+      ...formData,
+      [event.target.name]:event.target.value,
+    });
 
   }
   console.log(formData)
@@ -81,112 +79,49 @@ useEffect(() => {
   getAmens();
 }, []);
 
-const MakeTransaction = async (e) => {
-  // e.preventDefault();
-  console.log("clicked")
-  
-  try {
-    const formData = new FormData();
-    // formData.set("name", "Pending"); 
-    // address:dataUpdate.address,
-    //       bedroom:dataUpdate.bedroom,
-    //       bathroom:dataUpdate.bathroom,
-    //       city_id:dataUpdate.city_id,
-    //       name:dataUpdate.name,
-    //       price:dataUpdate.price,
-    //       typeRent:dataUpdate.typeRent,
-    formData.set("name", dataUpdate.name);
-    formData.set("price", dataUpdate.price);
-    formData.set("typeRent", dataUpdate.typeRent);
-    formData.set("address", dataUpdate.address);
-    formData.set("bedroom", dataUpdate.bedroom);
-    formData.set("bathroom", dataUpdate.bathroom);
-    formData.set("city_id", dataUpdate.city_id);
-    formData.set("amenities", amens.toString());
-    // formData.append("image", dataUpdate.imageFile, dataUpdate.imageFile.name);
-    formData.append("imageFile", dataUpdate.imageFile,dataUpdate.imageFile.name);
-    formData.append("imageFile", dataUpdate.imageFile1,dataUpdate.imageFile1.name);
-    formData.append("imageFile", dataUpdate.imageFile2,dataUpdate.imageFile2.name);
-    formData.append("imageFile", dataUpdate.imageFile3,dataUpdate.imageFile3.name);
-    console.log(formData)
-  
-    const config = {
+  const MakeTransaction = () => {
+
+    fetch('http://localhost:5000/api/v1/house', {
+      method: 'POST',
       headers: {
-        "Content-Type": "multipart/form-data",
+        'Content-Type': 'application/json',
+          'Authorization':`Bearer ${token}`
+
       },
-    };
-    // let res = await fetch(`http://localhost:5000/api/v1/updatetransaction/150`, {
-      let res = await fetch('http://localhost:5000/api/v1/house', {
-        method: 'POST',
-        body: formData,
-      }
+      body: JSON.stringify({
+        address:formData.address,
+        bedroom:formData.bedroom,
+        bathroom:formData.bathroom,
+        city_id:formData.city_id,
+        name:formData.name,
+        price:formData.price,
+        typeRent:formData.typeRent,
+        amenities:amens.toString(),
+        image:formData.imageFile.replace(/C:\\fakepath\\/, ''),
+        image1:formData.imageFile1.replace(/C:\\fakepath\\/, ''),
+        image2:formData.imageFile2.replace(/C:\\fakepath\\/, ''),
+        image3:formData.imageFile3.replace(/C:\\fakepath\\/, ''),
 
-    );
-    console.log(res)
+        // imageFile:for
+        
 
-    const stat=res.status
-       if(stat=="200"){
+      }),
+    })
+      .then((res) => res.json() )
+      .then((res) => {
+       console.log(res)
+       const stat=res.status
+       if(stat=="success"){
         console.log("success")
-        alert("Pembayaran Anda Akan di Konfirmasi dalam 1 x 24 Jam        Untuk melihat pesanan Klik Disini Terimakasih")
-        // router.push(`/mybookingpending`);
+        alert("kamu berhasil membuat transaksi")
+        // router.push(`/mybooking`);
        }
-    // console.log(res)
-
-  } catch (error) {
-    console.log(error);
-  }
-};
-console.log(formData)
-
-  // const MakeTransaction = () => {
-
-  //   fetch('http://localhost:5000/api/v1/house', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //         'Authorization':`Bearer ${token}`
-
-  //     },
-  //     body: JSON.stringify({
-  //       address:dataUpdate.address,
-  //       bedroom:dataUpdate.bedroom,
-  //       bathroom:dataUpdate.bathroom,
-  //       city_id:dataUpdate.city_id,
-  //       name:dataUpdate.name,
-  //       price:dataUpdate.price,
-  //       typeRent:dataUpdate.typeRent,
-  //       amenities:amens.toString(),
-  //       // image:dataUpdate.imageFile,
-  //       image: ("imageFile",dataUpdate.imageFile,dataUpdate.imageFile.name),
-  //       // image1:dataUpdate.imageFile1,
-  //       // image2:dataUpdate.imageFile2,
-  //       // image3:dataUpdate.imageFile3,
-        
-  //       // image:formData.imageFile.replace(/C:\\fakepath\\/, ''),
-  //       // image1:formData.imageFile1.replace(/C:\\fakepath\\/, ''),
-  //       // image2:formData.imageFile2.replace(/C:\\fakepath\\/, ''),
-  //       // image3:formData.imageFile3.replace(/C:\\fakepath\\/, ''),
-
-  //       // imageFile:for
-        
-
-  //     }),
-  //   })
-  //     .then((res) => res.json() )
-  //     .then((res) => {
-  //      console.log(res)
-  //      const stat=res.status
-  //      if(stat=="success"){
-  //       console.log("success")
-  //       alert("kamu berhasil membuat transaksi")
-  //       // router.push(`/mybooking`);
-  //      }
-  //      console.log(res.status)
-  //    }) 
-  //     .then((result) => setData(result.rows))
+       console.log(res.status)
+     }) 
+      .then((result) => setData(result.rows))
       
-  //     .catch((err) => console.log('error'))
-  // }
+      .catch((err) => console.log('error'))
+  }
 
   
 
@@ -204,7 +139,7 @@ console.log(formData)
    
   <Form.Group className="mb-3" controlId="name">
     <Form.Label> <h5> Name Property</h5></Form.Label>
-    <Form.Control type="text"  name="name" value={dataUpdate.name} onChange={handleChange} />
+    <Form.Control type="text"  name="name" value={formData.name} onChange={handleChange} />
   </Form.Group>
 
   
@@ -316,7 +251,6 @@ console.log(formData)
             onChange={handleChange}
             required
           />
-          
   
     </Col>
     <Col sm="1">
