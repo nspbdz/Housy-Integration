@@ -5,7 +5,6 @@ import { FilterContext} from "../contexts/filterContext";
 import Sidebar from "../components/Sidebar";
 import Owner from "./Owner";
 import TransactionList from "../components/TransactionList";
-
 import CardList from "../components/CardList";
 import { API } from "../config/api";
 import { useQuery } from "react-query";
@@ -84,6 +83,33 @@ const Home = () => {
     return (
           <>
       <Row >
+      {state.isLogin !==true  &&(
+<>
+        <Col  xs={4}  style={{marginRight:"50px"}}>
+          <Sidebar />
+          <Row>
+            <Col sm="4"></Col>
+            <Col sm="3"></Col>
+            <Col sm="5">
+             <Button style={{width:"140px",backgroundColor:"#5A57AB"}}  onClick={getHouses => setPage(true)} className="justic=fy" variant="primary" type="submit">
+                Apply
+            </Button>
+            </Col>
+        </Row>
+        </Col>
+        <Col >
+          {page === true 
+          ? 
+          <CardList data={dataApi} isLoading={isLoading} error={error} />
+        :  
+        // <p>jsnajdnsjdnaj</p>
+        <CardList data={data} isLoading={isLoading} error={error} />
+
+        }
+        </Col>
+</>
+
+      )}
       {state.isLogin==true && state.user.listasid==1 &&(
 <TransactionList data={dataTransaction} isLoading={isLoading} error={error} />
       )}
@@ -95,7 +121,7 @@ const Home = () => {
             <Col sm="4"></Col>
             <Col sm="3"></Col>
             <Col sm="5">
-             <Button style={{width:"140px"}}  onClick={getHouses => setPage(true)} className="justic=fy" variant="primary" type="submit">
+             <Button style={{width:"140px",backgroundColor:"#5A57AB"}}  onClick={getHouses => setPage(true)} className="justic=fy" variant="primary" type="submit">
                 Apply
             </Button>
             </Col>

@@ -63,7 +63,7 @@ console.log(state);
               // onChange={handleChange}
             />
             <InputGroup.Append>
-              <Button id="search-button">search</Button>
+              <Button style={{backgroundColor:"#5A57AB"}} id="search-button">search</Button>
             </InputGroup.Append>
           </InputGroup>
         </Form>

@@ -85,7 +85,7 @@ const handleSubmit = async (e) => {
        if(stat=="200"){
         console.log("success")
         alert("Pembayaran Anda Akan di Konfirmasi dalam 1 x 24 Jam        Untuk melihat pesanan Klik Disini Terimakasih")
-        // router.push(`/mybookingpending`);
+        router.push(`/mybookingpending`);
        }
     // console.log(res)
 
