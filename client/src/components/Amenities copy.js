@@ -1,89 +1,101 @@
-import { InputGroup,FormControl,Row,Col,Form } from "react-bootstrap";
-// import React from 'react';
-import React, { useCallback } from 'react'
-
+import {useState,useEffect,useRef,useContext} from "react";
+import {Col,Row} from "react-bootstrap";
+import { AmenitiesContext} from "../contexts/AmenitiesContext";
 
 function Amenities({ amenities, setAmenities}) {
-  const [amen,setAmen] = useState({
-    ame:"",
-   
-  })
-
-    const handleAmenities = useCallback(event => {
-      setAmen({
-        ame:[event.target.value],
-     
-      })
-        // setAmenities({
-        //     ...amenities,
-        //     furnished:event.target.value
-        // })
-    }, [setAmenities])
-  console.log(amen)
-const amens=["Furnished","Pet Allowed","Shared Acomodation",]
-        return (
-            <>
-    
-        <p className="h3 text-left font-weight-bold">Amenities</p> 
-        <form >
-        {amens.map((rento, index) => (
-            // <label ref={elemRef} onClick={handleColor} name={rento} value={rento} key={index} style={{textAlign:"center", border:"1px solid #CCC",width:"70px",margin:"15px",height:"30px"}}>
-            <label  key={index} style={{textAlign:"center", border:"1px solid #CCC",width:"70px",margin:"15px",height:"30px"}}>
-              {rento}
-              <input      
-                value={[rento]}
-                name={rento}
-                onChange={handleAmenities}
-                type="checkbox"
-              />
-            </label>
-          ))}
-        </form>
-         <Row>
-            <Col sm><p className=""> Furnished</p></Col>
-            {/* <Col sm></Col> */}
-            <Col sm>
-           <input   
-            //   style={{display:"none"}}
-                value="Furnished"
-                checked={amenities === "Furnished"}
-                onChange={handleAmenities}
-                type="checkbox"
-              />
-            </Col>
-        </Row>
-
-        <Row>
-            <Col sm><p className=""> Pet Allowed</p></Col>
-            <Col sm>   
-           <input   
-            //   style={{display:"none"}}
-                value="Pet Allowed"
-                checked={amenities === "Pet Allowed"}
-                // onChange={() => setRent(rent:"Pet Allowed")}
-                onChange={handleAmenities}
-                type="checkbox"
-              />
-            </Col>
-        </Row>
-
-        <Row>
-            <Col sm><p className="">Shared Accomodation</p></Col>
-            <Col sm>   
-           <input   
-            //   style={{display:"none"}}
-                value="Shared Acomodities"
-                checked={amenities === "Shared Acomodities"}
-                // onChange={() => setRent(rent:"Share Acomodities")}
-                onChange={handleAmenities}
-                type="checkbox"
-              />
-            </Col>
-        </Row>
-
-            </>
-
-        )
-}
+  const elemRef = useRef(null);
   
-  export default Amenities;
+  // const [state,AmenitiesDispatch] = useContext(AmenitiesContext)
+  const [amen,setAmen] = useState([])
+  const [amens,setAmens] = useState([])
+  var result=""
+
+ const handleCheckboxChange = async (e)  => {
+    let newArray =   [...amens, e.target.id];
+    if (amens.includes(e.target.id) )
+     {
+      newArray = newArray.filter(day => day !== e.target.id);
+    }
+     setAmens( newArray );
+     setAmenities(amens.toString())
+
+    // function sets(){
+    //   setAmenities(amens.toString())
+    //    await arr()
+    // }
+// console.log(handl)
+    //  return (amensData)
+    //  return  setAmenities(amensData)
+  //  setAmenities(amensData)
+
+  };
+
+  const checkUser =  () => {
+    // const datAme=amens.toString()
+    //   setAmenities(datAme)
+      setAmenities(amens.toString())
+      
+  }
+  useEffect(() => {
+    checkUser();
+  }, []);
+
+console.log(result)
+
+console.log(amens)
+console.log(amenities)
+    return (
+      <div>
+        <form>
+          
+            <h5>Amenities</h5>
+            <Row>
+              <Col sm="4" > 
+                <p> Furnished</p> 
+              </Col>
+              <Col sm="4" >   </Col>
+              <Col sm="4" >
+              <input ref={elemRef}
+                type="checkbox"
+                id="Furnished"
+                value="Furnished"
+                onChange={handleCheckboxChange}
+              />
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="5" > 
+                <p> Pet Allowed</p> 
+              </Col>
+              <Col sm="3" >   </Col>
+              <Col sm="4" >
+              <input ref={elemRef}
+                type="checkbox"
+                id="Pet Allowed"
+                value="Pet Allowed"
+                onChange={handleCheckboxChange}
+              />
+              </Col>
+            </Row>
+            <Row>
+              <Col sm="5" > 
+                <p> Shared Accomodation</p> 
+              </Col>
+              <Col sm="3" >   </Col>
+              <Col sm="4" >
+              <input ref={elemRef}
+                type="checkbox"
+                id="Shared Accomodation"
+                value="Shared Accomodation"
+                onChange={handleCheckboxChange}
+              />
+              </Col>
+            </Row>
+        </form>
+       
+      </div>
+    );
+  // }
+}
+
+export default Amenities;

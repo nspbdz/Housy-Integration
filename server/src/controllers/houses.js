@@ -190,7 +190,7 @@ exports.createHouse = async (req, res) => {
     });
   }
 };
-
+ 
 //update
 exports.updateHouse = async (req, res) => {
   const { id } = req.params;
@@ -353,7 +353,9 @@ exports.getHousesTwoParam = async (req, res) => {
 
 exports.housesFilter = async (req, res) => {
   try {
-    const houses = await House.findAll({
+    const path = process.env.PATH_FILE
+
+    let houses = await House.findAll({
       where: {
         typeRent: {
           [Op.like]: '%' + req.query.typeRent + '%'
@@ -393,6 +395,18 @@ exports.housesFilter = async (req, res) => {
       
     });
 
+const parseJSON = JSON.parse(JSON.stringify(houses))
+console.log(parseJSON)
+houses = parseJSON.map(House => {
+  return {
+      ...House,
+      image: House.image ? path + House.image : null,
+      // image1: House.image1 ? path + House.image1 : null,
+      // image2: House.image2 ? path + House.image2 : null,
+      // image3: House.image3 ? path + House.image3 : null
+
+  }
+})
     res.send({
       status: "success",
       message: "resource has successfully get",

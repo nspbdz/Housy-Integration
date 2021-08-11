@@ -5,11 +5,11 @@ export const FilterContext = createContext();
 const initialState = {
   isFilter: false,
   data: {
-    typeRent: '',
-    price: '',
-    amenities:[],
-    bedroom: '',
-    bathroom: '',
+    typeRent: 'day',
+    price: '1200000',
+    amenities:'pet Allowed',
+    bedroom: '2',
+    bathroom: '1',
   }
 }
 const reducer = (state, action) =>{

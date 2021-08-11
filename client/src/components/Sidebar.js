@@ -16,7 +16,7 @@ const Sidebar = (props) => {
   const [rent, setRent] = useState("day");
   const [bedroom, setBedroom] = useState(2);
   const [bathroom, setBathroom] = useState(1);
-  const [amenities, setAmenities] = useState("Pet Allowed");
+  const [amenities, setAmenities] = useState("furnished");
   const [budget, setBudget] = useState(1200000);
 
   const valrent = rent
@@ -26,8 +26,6 @@ const Sidebar = (props) => {
   const valbudget = budget
 
   console.log(valrent)
- 
-     
   useEffect(() => {
     filterDispatch({
           type: 'Filter',

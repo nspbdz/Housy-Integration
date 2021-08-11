@@ -4,15 +4,13 @@ import "../styles/customBtn.css";
 import React, { useCallback } from 'react'
 
 function Bathroom({ bathroom, setBathroom}) {
-  
-
     const handleBathroom = useCallback(event => {
       setBathroom(event.target.value)
     }, [setBathroom])
     const [colors, setColors] = useState({
       v1:1,
       v2:"",
-      v3:"",
+      v3:"", 
       v4:"",
       v5:"",
     });

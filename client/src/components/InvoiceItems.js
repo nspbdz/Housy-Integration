@@ -38,7 +38,7 @@ function InvoiceItems({ item,id }) {
        const stat=res.status
        if(stat=="success"){
         console.log("success")
-        // alert("kamu berhasil Update Status ")
+        alert("kamu berhasil Update Status Invoice ")
         // router.push(`/mybooking`);
        }
      }) 
@@ -65,7 +65,7 @@ function InvoiceItems({ item,id }) {
        const stat=res.status
        if(stat=="success"){
         console.log("success")
-        // alert("kamu berhasil Update Status ")
+        alert("kamu berhasil Update Status Invoice ")
         // router.push(`/mybooking`);
        }
      }) 

@@ -12,6 +12,7 @@ import { UserContext } from "../contexts/userContext";
 
 const Home = () => {
   const [state, dispatch] = useContext(UserContext);
+  const [page, setPage] = useState(false)
 
   const [dataApi, setData] = useState(null);
   const [dataTransaction, setDataTransaction] = useState(null);
@@ -26,40 +27,28 @@ const Home = () => {
   const price= contextValue[0].data.price
   const bedroom= contextValue[0].data.bedroom
   const bathroom= contextValue[0].data.bathroom
-  // console.log(typeRent)
+  console.log(typeRent)
   console.log(amenities)
-  // console.log(price)
-  // console.log(bedroom)
-  // console.log(bathroom)
+  console.log(price)
+  console.log(bedroom)
+  console.log(bathroom)
 
   // console.log(state)
   const { isLoading, data, error } = useQuery("houses", async () => {
     const response = await API.get("/houses");
-      // const response = await API.get(`/house?typeRent=day&price=1200000&amenities=pet allowed&bedroom=2&bathroom=1`);
-      // const response = await API.get(`/house?typeRent=${typeRent}&amenities=${amenities}&price=${price}&bedroom=${bedroom}&bathroom=${bathroom}`);
-      // http://localhost:5000/api/v1/house?typeRent=day&price=1200000&amenities=pet allowed&bedroom=2&bathroom=1
       return response.data.data;
   });
-
-  // const  {isLoadingFilter, errors } = useQuery("houses", async () => {
-
     const getHouses = async () => {
     if (isLoading) return <p>...loading</p>;
-
     // const response = await API.get("/houses");
-
       const response = await API.get(`/house?typeRent=${typeRent}&amenities=${amenities}&price=${price}&bedroom=${bedroom}&bathroom=${bathroom}`);
-      // console.log(response);
+      console.log(response);
       setData(response.data.data);
+      setPage(true)
       setLoadingFilter(false);
     };
   
-    useEffect(() => {
-      getHouses();
-      return () => {
-        setData(null);
-      };
-    }, []);
+  
 
     const getTransactions = async () => {
       const response = await API.get("/transactions");
@@ -75,7 +64,6 @@ const Home = () => {
         };
       }, []);
     // console.log(dataApi)
-    const [page, setPage] = useState(false)
     // console.log(dataTransaction)
     console.log(data)
     console.log(dataApi)
@@ -105,7 +93,7 @@ const Home = () => {
         // <p>jsnajdnsjdnaj</p>
         <CardList data={data} isLoading={isLoading} error={error} />
 
-        }
+      }
         </Col>
 </>
 
@@ -121,7 +109,7 @@ const Home = () => {
             <Col sm="4"></Col>
             <Col sm="3"></Col>
             <Col sm="5">
-             <Button style={{width:"140px",backgroundColor:"#5A57AB"}}  onClick={getHouses => setPage(true)} className="justic=fy" variant="primary" type="submit">
+             <Button style={{width:"140px",backgroundColor:"#5A57AB"}}  onClick={getHouses} className="justic=fy" variant="primary" type="submit">
                 Apply
             </Button>
             </Col>

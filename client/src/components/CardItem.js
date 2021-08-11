@@ -42,12 +42,13 @@ function CardItem({ item }) {
                   <div class="card-img-overlay">
                   <Card.Title style={{backgroundColor:"white",width:"100px" }}>
                               <div className="room__amenity" >
-                                {/* <p style={{fontSize:"14px",backgroundColor:"white",textAlign:"center"}}>{item.amenities.replace(/,/g, " ")}</p> */}
+                                <p style={{fontSize:"14px",backgroundColor:"white",textAlign:"center"}}>{item.amenities.replace(/,/g, " ")}</p>
                               </div>
                             </Card.Title>
                     </div>
+                    <Card.Title> {item.name} </Card.Title>
                     <Card.Title>Rp.{prices} / {item.typeRent} </Card.Title>
-                    <Card.Text>{item.bedroom} Beds,{item.bedroom}bedroom</Card.Text>
+                    <Card.Text>{item.bedroom} Beds,{item.bathroom}bathroom</Card.Text>
                     <Card.Text>{item.address}</Card.Text>
                   </Card.Body>
                 </Card>
